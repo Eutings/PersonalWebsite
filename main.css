@@ -10,7 +10,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('./dict/images/cover.jpg');
+  background-image: url('./dict/images/back.JPG');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -62,6 +62,15 @@ body{
   font-weight: 100;
   margin-bottom: 5px;
   /* margin: 20px 20px 0 20px; */
+}
+
+.text-intro .author a {
+  color: #ffffff; /* Ensure links are white */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.text-intro .author a:hover {
+  text-decoration: underline; /* Add underline on hover for better visibility */
 }
 
 .container{

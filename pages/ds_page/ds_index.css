@@ -58,9 +58,9 @@ body{
 }
 
 .right_present_professional,
-.right_present_research,
+.right_present_certification,
 .right_present_inschool,
-.right_present_kaggle {
+.right_present_project {
     position: absolute;
     top: 30px;
     left: 50px;
@@ -74,9 +74,9 @@ body{
 }
 
 .right_present_professional.active,
-.right_present_research.active,
+.right_present_certification.active,
 .right_present_inschool.active,
-.right_present_kaggle.active {
+.right_present_project.active {
     display: block;
 }
 
