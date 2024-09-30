@@ -16,7 +16,7 @@
             <h3>Shopping Cart</h3>
         </div>
         <div class="btn research" onclick="showContent('research')">
-            <h3>Word Cloud</h3>
+            <h3>Machine Learning</h3>
         </div>
         <div class="btn inschool" onclick="showContent('inschool')">
             <h3>User Profile</h3>
@@ -346,29 +346,77 @@ run_command()
         </div>
         <div class="right_present_research content">
             <div class="card">
-                <h1>Word Cloud</h1>
-                <h2>Turn English text into a word cloud -- Python</h2>
-                <p><pre><code>import wordcloud
-txt = "Type any English text here to convert into a word cloud"
-w = wordcloud.WordCloud(\
-    background_color = "white")
-w.generate(txt)
-w.to_file("pywcloud.png")
+                <h1>Machine Learning</h1>
+                <h2>Titanic - Machine Learning from Disaster -- Python</h2>
+                <p><pre><code>import numpy as np
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.impute import SimpleImputer
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import accuracy_score, classification_report
+
+# input
+train_data = pd.read_csv("/kaggle/input/titanic/train.csv")
+test_data = pd.read_csv("/kaggle/input/titanic/test.csv")
+
+# check missing value
+imp = SimpleImputer(strategy="median")
+X_train = pd.DataFrame(imp.fit_transform(X_train), columns=[ "Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked"])
+X_test = pd.DataFrame(imp.transform(X_test), columns=[ "Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked"])
+
+print("Checking for missing values in training data:\n", X_train.isnull().sum())
+print("Checking for missing values in test data:\n", X_test.isnull().sum())
+
+
+# feature_engineering
+def feature_engineering(data):
+
+    data['Sex'] = data['Sex'].replace({'female': 0, 'male': 1}).astype(int)
+    data['Embarked'] = data['Embarked'].replace({'S': 1, 'C': 2, 'Q': 3, np.nan: 0}).astype(int)
+
+    
+    return data
+
+train_data = feature_engineering(train_data)
+test_data = feature_engineering(test_data)
+
+print("Checking for missing values in training data:\n", X_train.isnull().sum())
+print("Checking for missing values in test data:\n", X_test.isnull().sum())
+
+
+
+
+X_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train, y_train, test_size=0.2, random_state=42)
+
+# Logistic Regression
+log_reg = LogisticRegression(max_iter=1000)
+
+log_reg.fit(X_train_split, y_train_split)
+
+y_val_pred = log_reg.predict(X_val_split)
+
+val_accuracy = accuracy_score(y_val_split, y_val_pred)
+print("Validation accuracy:", val_accuracy)
+
+# predict result
+print(classification_report(y_val_split, y_val_pred))
+# evaluate model
+cross_val_scores = cross_val_score(log_reg, X_train, y_train, cv=5, scoring='accuracy')
+print("Cross-Validation Accuracy Scores:", cross_val_scores)
+print("Mean Cross-Validation Accuracy:", cross_val_scores.mean())
+
+# output predict
+y_test_pred = log_reg.predict(X_test)
+
+
+output = pd.DataFrame({'PassengerId': test_data.PassengerId, 'Survived': y_test_pred})
+output.to_csv('submission.csv', index=False)
+print("Your submission was successfully saved!")
+
                 </pre></code></p>
             </div>
 
-            <div class="card">
-                <h1></h1>
-                <h2>Turn Chinese text into a word cloud -- Python</h2>
-                <p><pre><code>import jieba
-import wordcloud
-txt = "输入任意你想要变成词云的文本"
-w = wordcloud.WordCloud( width=1000,\
-                         font_path="Hiragino Sans GB.ttc",height=700)
-w.generate(" ".join(jieba.lcut(txt)))
-w.to_file("pywcloud.png")
-                </pre></code></p>
-            </div>
+            
         </div>
     
             <div class="right_present_inschool content">
