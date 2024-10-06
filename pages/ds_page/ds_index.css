@@ -134,3 +134,87 @@ a:link {
 a:visited{
     color: #fff;
 }
+/* 针对小屏幕的样式 */
+@media (max-width: 767px) {
+    .left_container {
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+    .right_container {
+        width: 100%;
+        height: auto;
+        margin: 0 20px 50px 20px;
+    }
+    .stacking_img img {
+        width: 100%;
+        height: auto;
+    }
+    .card h1 {
+        font-size: 24px;
+    }
+    .card h2 {
+        font-size: 18px;
+    }
+    .card p {
+        font-size: 16px;
+    }
+}
+
+/* 针对中等屏幕的样式 */
+@media (min-width: 768px) and (max-width: 991px) {
+    .left_container {
+        width: 30%;
+        height: auto;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+    .right_container {
+        width: 60%;
+        height: auto;
+        margin: 0 20px 50px 20px;
+    }
+    .stacking_img img {
+        width: 80%;
+        height: auto;
+    }
+    .card h1 {
+        font-size: 28px;
+    }
+    .card h2 {
+        font-size: 20px;
+    }
+    .card p {
+        font-size: 17px;
+    }
+}
+
+/* 针对大屏幕的样式 */
+@media (min-width: 992px) {
+    .left_container {
+        width: 20%;
+        height: auto;
+        margin-right: 50px;
+        margin-left: 20px;
+    }
+    .right_container {
+        width: 70%;
+        height: auto;
+        margin: 0 20px 50px 20px;
+    }
+    .stacking_img img {
+        width: 70%;
+        height: auto;
+    }
+    .card h1 {
+        font-size: 32px;
+    }
+    .card h2 {
+        font-size: 22px;
+    }
+    .card p {
+        font-size: 18px;
+    }
+}
